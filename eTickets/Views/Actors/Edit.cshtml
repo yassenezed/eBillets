@@ -1,13 +1,13 @@
 ﻿@model Actor
 
 @{
-    ViewData["Title"] = "Update actor";
+    ViewData["Title"] = "Mise à jour Acteur";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Update Actor</h1>
+            <h1>Mise à jour Acteur</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
@@ -32,10 +32,10 @@
                         <input asp-for="Bio" class="form-control" />
                         <span asp-validation-for="Bio" class="text-danger"></span>
                     </div>
-
+                    <br />
                     <div class="form-group">
-                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
-                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                        <input type="submit" value="Mise à jour" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Afficher Tous</a>
                     </div>
                 </form>
             </div>

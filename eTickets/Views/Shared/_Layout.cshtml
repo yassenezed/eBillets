@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - eTickets</title>
+    <title>@ViewData["Title"] - eBillets</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
@@ -24,37 +24,48 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-controller="Movies" asp-action="Index">eTickets</a>
+                <a class="navbar-brand" asp-controller="Movies" asp-action="Index">eBillets</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Index"><i class="bi bi-film"></i> Movies</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Index"><i class="bi bi-film"></i> Films</a>
                         </li>
 
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#" aria-haspopup="true" aria-expanded="false">
-                                    <i class="bi bi-gear"></i> Management
+                                    <i class="bi bi-gear"></i> Gestion
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" asp-controller="Cinemas" asp-action="Index"><i class="bi bi-camera-reels"></i> Cinemas</a>
-                                    <a class="dropdown-item" asp-controller="Producers" asp-action="Index"><i class="bi bi-headset"></i> Producers</a>
-                                    <a class="dropdown-item" asp-controller="Actors" asp-action="Index"><i class="bi bi-person-square"></i> Actors</a>
+                                    <a class="dropdown-item" asp-controller="Producers" asp-action="Index"><i class="bi bi-headset"></i> Producteurs</a>
+                                    <a class="dropdown-item" asp-controller="Actors" asp-action="Index"><i class="bi bi-person-square"></i> Acteurs</a>
                                 </div>
                             </li>
                         }
                     </ul>
 
                     <form class="form-inline my-2 my-lg-0" asp-controller="Movies" asp-action="Filter" style="padding-right: 25px;">
-                        <input name="searchString" type="text" class="form-control" placeholder="Search for a movie..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                        <div class="row">
+                            <div class="col-auto" style="margin-right: -5px;">
+                                <!-- Adjust margin-right as needed -->
+                                <input name="searchString" type="text" class="form-control" placeholder="Chercher un film" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            </div>
+                            <div class="col-auto" style="margin-left: -13px;">
+                                <!-- Adjust margin-left as needed -->
+                                <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                            </div>
+                        </div>
                     </form>
+
+
+                   
 
                     <ul class="navbar-nav">
                         @await Component.InvokeAsync("ShoppingCartSummary")
@@ -74,7 +85,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - eTickets
+            &copy; 2024 - eBillets
         </div>
     </footer>
 

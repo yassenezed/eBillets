@@ -2,22 +2,22 @@
 @model ShoppingCartVM
 
 @{
-    ViewData["Title"] = "Shopping cart summary";
+    ViewData["Title"] = "Résumé du panier d'achat";
 }
 
 <div class="row">
     <div class="col-md-8 offset-2">
         <div class="text-center">
-            <h2>You shopping cart summary</h2>
+            <h2>Résumé de votre panier d'achat</h2>
         </div>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>Selected amount</th>
-                    <th>Movie</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
+                    <th>Quantité sélectionnée</th>
+                    <th>Film</th>
+                    <th>Prix</th>
+                    <th>Sous-total</th>
                     <th></th>
                 </tr>
             </thead>
@@ -46,7 +46,7 @@
             <tfoot>
                 <tr>
                     <td colspan="2"></td>
-                    <td><b>Total:</b></td>
+                    <td><b>Total :</b></td>
                     <td>
                         @Model.ShoppingCartTotal.ToString("c")
                     </td>
@@ -58,12 +58,12 @@
         <div class="text-right">
             <div class="btn-group">
                 @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
-                Complete order
+                Finaliser la commande
                 </a>*@
                 <div id="paypal-btn"></div>
                 <span style="padding:5px"></span>
                 <a class="btn btn-outline-success" asp-controller="Movies" asp-action="Index">
-                    Add more items
+                    Ajouter plus d'articles
                 </a>
             </div>
         </div>
@@ -77,17 +77,17 @@
 
     <script>
 
-        let _total = @Html.Raw(Model.ShoppingCartTotal);
+        let _total = @Html.Raw(Math.Max(Model.ShoppingCartTotal, 1.00));
 
         paypal.Button.render({
-            //Configure environment
+            // Configurer l'environnement
             env: 'sandbox',
             client: {
                 sandbox: 'Ae_jNtXrN-0MCZv-FNFV47zQEvcaolgGjZoHfExHcFTZtdjU1yXhwA6PWYVWybRPEBkNouHJIXkW09h5'
             },
 
-            //Customize button
-            locale: 'en_US',
+            // Personnaliser le bouton
+            locale: 'fr_FR',
             style: {
                 size: 'small',
                 color: 'gold',
@@ -95,7 +95,7 @@
             },
             commit: true,
 
-            //Set up a payment
+            // Mettre en place un paiement
             payment: function (data, actions) {
                 return actions.payment.create({
                     transactions: [{
@@ -107,7 +107,7 @@
                 });
             },
 
-            //Execute the payment
+            // Exécuter le paiement
             onAuthorize: function (data, actions) {
                 return actions.payment.execute().then(function () {
                     var url = '@Url.Action("CompleteOrder", "Orders", new { })';

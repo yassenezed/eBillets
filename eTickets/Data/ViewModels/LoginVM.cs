@@ -8,11 +8,12 @@ namespace eTickets.Data.ViewModels
 {
     public class LoginVM
     {
-        [Display(Name = "Email address")]
-        [Required(ErrorMessage = "Email address is required")]
+        [Display(Name = "Adresse Email")]
+        [Required(ErrorMessage = "Adresse Email est incorrecte ")]
         public string EmailAddress { get; set; }
 
         [Required]
+        [Display(Name = "Mot de passe")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

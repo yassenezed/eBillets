@@ -8,22 +8,22 @@ namespace eTickets.Data.ViewModels
 {
     public class RegisterVM
     {
-        [Display(Name = "Full name")]
-        [Required(ErrorMessage = "Full name is required")]
+        [Display(Name = "Nom Complet")]
+        [Required(ErrorMessage = "Le nom complet est requis")]
         public string FullName { get; set; }
 
-        [Display(Name = "Email address")]
-        [Required(ErrorMessage = "Email address is required")]
+        [Display(Name = "Adresse e-mail")]
+        [Required(ErrorMessage = "L'adresse e-mail est requise")]
         public string EmailAddress { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Le mot de passe est requis")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Confirm password")]
-        [Required(ErrorMessage = "Confirm password is required")]
+        [Display(Name = "Confirmer le mot de passe")]
+        [Required(ErrorMessage = "La confirmation du mot de passe est requise")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        [Compare("Password", ErrorMessage = "Les mots de passe ne correspondent pas")]
         public string ConfirmPassword { get; set; }
     }
 }

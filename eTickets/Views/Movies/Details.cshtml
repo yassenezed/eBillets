@@ -1,7 +1,7 @@
 ﻿@model Movie
 
 @{
-    ViewData["Title"] = "Movie details";
+    ViewData["Title"] = "Details Films";
 }
 
 <div class="row">
@@ -30,16 +30,16 @@
                             </a>
                         </p>
                         <p class="card-text">
-                            <b>Producer: </b>
+                            <b>Producteur: </b>
                             <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducerId">
                                 @Model.Producer.FullName
                             </a>
                         </p>
-                        <p class="card-text"><b>Category: </b>@Model.MovieCategory</p>
-                        <p class="card-text"><b>Start Date: </b>@Model.StartDate.ToString("dd MMM yy")</p>
-                        <p class="card-text"><b>End Date: </b>@Model.EndDate.ToString("dd MMM yy")</p>
+                        <p class="card-text"><b>Categorie: </b>@Model.MovieCategory</p>
+                        <p class="card-text"><b>Date Début: </b>@Model.StartDate.ToString("dd MMM yy")</p>
+                        <p class="card-text"><b>Date Fin: </b>@Model.EndDate.ToString("dd MMM yy")</p>
                         <p class="card-text ">
-                            <b>Status: </b>
+                            <b>État: </b>
                             @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
                             {
                                 <span class="badge bg-success text-white">AVAILABLE</span>
@@ -78,7 +78,7 @@
                             </a>
                             <a class="btn btn-success text-white  @((DateTime.Now > Model.EndDate) ? "disabled" : "")"
                                asp-controller="Orders"
-                               asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))</a>
+                               asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Ajouter au Panier (Prix @Model.Price.ToString("c"))</a>
                         </p>
                     </div>
                 </div>

@@ -1,5 +1,4 @@
-﻿
-using eTickets.Data.Base;
+﻿using eTickets.Data.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace eTickets.Models
 {
-    public class Cinema :IEntityBase
+    public class Cinema : IEntityBase
     {
         [Key]
         public int Id { get; set; }
 
-        [Display(Name = "Cinema Logo")]
-        [Required(ErrorMessage = "Cinema logo is required")]
+        [Display(Name = "Logo du cinema")]
+        [Required(ErrorMessage = "Le logo du cinema est requis")]
         public string Logo { get; set; }
 
-        [Display(Name = "Cinema Name")]
-        [Required(ErrorMessage = "Cinema name is required")]
+        [Display(Name = "Nom du cinema")]
+        [Required(ErrorMessage = "Le nom du cinema est requis")]
         public string Name { get; set; }
 
         [Display(Name = "Description")]
-        [Required(ErrorMessage = "Cinema description is required")]
+        [Required(ErrorMessage = "La description du cinema est requise")]
         public string Description { get; set; }
 
-        //Relationships
+        //Relations
         public List<Movie> Movies { get; set; }
     }
 }

@@ -1,13 +1,13 @@
 ﻿@model Producer
 
 @{
-    ViewData["Title"] = "Add a new producer";
+    ViewData["Title"] = "Ajouter un producteur";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Add a New Producer</h1>
+            <h1>Ajouter un producteur</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
@@ -32,10 +32,10 @@
                         <input asp-for="Bio" class="form-control" />
                         <span asp-validation-for="Bio" class="text-danger"></span>
                     </div>
-
+                    <br />
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
-                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                        <input type="submit" value="Créer" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Afficher Tous</a>
                     </div>
                 </form>
             </div>

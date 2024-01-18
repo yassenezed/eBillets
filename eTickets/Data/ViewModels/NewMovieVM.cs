@@ -14,45 +14,45 @@ namespace eTickets.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Movie name")]
-        [Required(ErrorMessage = "Name is required")]
+        [Display(Name = "Nom du film")]
+        [Required(ErrorMessage = "Le nom est requis")]
         public string Name { get; set; }
 
-        [Display(Name = "Movie description")]
-        [Required(ErrorMessage = "Description is required")]
+        [Display(Name = "Description du film")]
+        [Required(ErrorMessage = "La description est requise")]
         public string Description { get; set; }
 
-        [Display(Name = "Price in $")]
-        [Required(ErrorMessage = "Price is required")]
+        [Display(Name = "Prix en €")]
+        [Required(ErrorMessage = "Le prix est requis")]
         public double Price { get; set; }
 
-        [Display(Name = "Movie poster URL")]
-        [Required(ErrorMessage = "Movie poster URL is required")]
+        [Display(Name = "URL de l'affiche du film")]
+        [Required(ErrorMessage = "L'URL de l'affiche du film est requis")]
         public string ImageURL { get; set; }
 
-        [Display(Name = "Movie start date")]
-        [Required(ErrorMessage = "Start date is required")]
+        [Display(Name = "Date de début du film")]
+        [Required(ErrorMessage = "La date de début est requise")]
         public DateTime StartDate { get; set; }
 
-        [Display(Name = "Movie end date")]
-        [Required(ErrorMessage = "End date is required")]
+        [Display(Name = "Date de fin du film")]
+        [Required(ErrorMessage = "La date de fin est requise")]
         public DateTime EndDate { get; set; }
 
-        [Display(Name = "Select a category")]
-        [Required(ErrorMessage = "Movie category is required")]
+        [Display(Name = "Sélectionnez une catégorie")]
+        [Required(ErrorMessage = "La catégorie du film est requise")]
         public MovieCategory MovieCategory { get; set; }
 
-        //Relationships
-        [Display(Name = "Select actor(s)")]
-        [Required(ErrorMessage = "Movie actor(s) is required")]
+        //Relations
+        [Display(Name = "Sélectionnez acteur(s)")]
+        [Required(ErrorMessage = "Le(s) acteur(s) du film est(sont) requis")]
         public List<int> ActorIds { get; set; }
 
-        [Display(Name = "Select a cinema")]
-        [Required(ErrorMessage = "Movie cinema is required")]
+        [Display(Name = "Sélectionnez un cinema")]
+        [Required(ErrorMessage = "Le cinema du film est requis")]
         public int CinemaId { get; set; }
 
-        [Display(Name = "Select a producer")]
-        [Required(ErrorMessage = "Movie producer is required")]
+        [Display(Name = "Sélectionnez un producteur")]
+        [Required(ErrorMessage = "Le producteur du film est requis")]
         public int ProducerId { get; set; }
     }
 }
