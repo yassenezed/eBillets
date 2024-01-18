@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Movie>
+﻿@* @model IEnumerable<Movie>
 
 @{
     ViewData["Title"] = "Listes des Films";
@@ -72,4 +72,96 @@
     }
 </div>
 
-@await Html.PartialAsync("_CreateItem", "Movies") 
+@await Html.PartialAsync("_CreateItem", "Movies")  *@
+@model IEnumerable<Movie>
+
+@{
+    ViewData["Title"] = "Listes des Films";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          integrity="sha384-TT64I24SMOrA2MQFUUhUvDz6XLi/BX6jtiYUivL+8lXXz5l48XALV92KYzQqZZH5" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+          integrity="sha384-tB1dsUIHfv5fFzznt3c3ePLBw0lD8l+I5VWJfe3N8/8R6B8SeYSM8yU9bd6v7Hpn" crossorigin="anonymous">
+    <link rel="stylesheet" href="path/to/your/custom/styles.css">
+    <title>@ViewData["Title"]</title>
+</head>
+
+<body>
+   
+
+    <div class="container mt-4">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="@item.ImageURL" class="card-img-top" alt="@item.Name">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Cinema:</b> @item.Cinema.Name</li>
+                            <li class="list-group-item"><b>Categorie:</b> @item.MovieCategory</li>
+                            <li class="list-group-item"><b>Date de debut:</b> @item.StartDate.ToString("dd MMM yy")</li>
+                            <li class="list-group-item"><b>Date de Fin:</b> @item.EndDate.ToString("dd MMM yy")</li>
+                            <li class="list-group-item">
+                                <b>État:</b>
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                {
+                                    <span class="badge bg-success">AVAILABLE</span>
+                                }
+                                else if (DateTime.Now > item.EndDate)
+                                {
+                                    <span class="badge bg-danger">EXPIRED</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary">UPCOMING</span>
+                                }
+                            </li>
+                        </ul>
+                        <div class="col-md-12">
+                            <div class="card-footer">
+                                <div class="d-grid gap-2">
+                                    <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">
+                                        <i class="bi bi-eye-fill"></i> Afficher Details
+                                    </a>
+                                    <a class="btn btn-success text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")"
+                                       asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                                        <i class="bi bi-cart-plus"></i> Ajouter au panier (Prix @item.Price.ToString("c"))
+                                    </a>
+
+                                    <!-- Add the Edit button for Admin users -->
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @await Html.PartialAsync("_CreateItem", "Movies")
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-QrYF5tE5h82Jgxg7FwCUZP4IeuApW34kT+kJD4F5/5cu2G73Ihx9JzLIzPc+fHW"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
